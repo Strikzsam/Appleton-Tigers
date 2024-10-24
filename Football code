@@ -1,0 +1,71 @@
+# Football Fixtures and 
+import datetime
+# A dictionary to store fixtures
+fixtures = {}
+
+# Function to add a fixture
+def add_fixture():
+    team_name = input("Tigers: ")
+    opponent = input("st helens: ")
+    date_str = input("Enter the date of the match (saturday 10:00): ")
+    try:
+        match_date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        print("Invalid date format. Please use YYYY-MM-DD.")
+        return
+    fixtures[match_date] = {'team': team_name, 'opponent': opponent, 'score': None}
+    print(f"Fixture added: {Tigers} vs {opponent} on {match_date.date(saturday 26th )}")
+
+# Function to add a score to a fixture
+def add_score():
+    date_str = input("Enter the date of the match to add the score (YYYY-MM-DD): ")
+    try:
+        match_date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        print("Invalid date format. Please use YYYY-MM-DD.")
+        return
+    if match_date not in fixtures:
+        print("No fixture found on this date.")
+        return
+    team_score = input(f"Enter {fixtures[match_date]['team']}'s score: ")
+    opponent_score = input(f"Enter {fixtures[match_date]['opponent']}'s score: ")
+    fixtures[match_date]['score'] = {'team_score': team_score, 'opponent_score': opponent_score}
+    print(f"Score added: {fixtures[match_date]['team']} {team_score} - {opponent_score} {fixtures[match_date]['opponent']}")
+
+# Function to display all fixtures
+def display_fixtures():
+    if not fixtures:
+        print("No fixtures have been added.")
+        return
+    for date, details in sorted(fixtures.items()):
+        score_info = " vs ".join([details['team'], details['opponent']])
+        if details['score']:
+            score_info += f" | Score: {details['team']} {details['score']['team_score']} - {details['score']['opponent_score']} {details['opponent']}"
+        print(f"{date.date()}: {score_info}")
+
+# Main menu
+def main_menu():
+    while True:
+        print("\n--- Football Fixtures & Scores App ---")
+        print("1. Add a fixture")
+        print("2. Add a score")
+        print("3. Display all fixtures")
+        print("4. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            add_fixture()
+        elif choice == '2':
+            add_score()
+        elif choice == '3':
+            display_fixtures()
+        elif choice == '4':
+            print("Exiting the app. Goodbye!")
+            break
+        else:
+            print("Invalid choice, please try again.")
+
+# Run the app
+if __name__ == "__main__":
+    main_menu()
